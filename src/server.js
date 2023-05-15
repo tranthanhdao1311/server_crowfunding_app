@@ -3,8 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const verifyToken = require("./middleware/auth");
 const jwt = require("jsonwebtoken");
-const rawdata = fs.readFileSync("db.json");
-const database = JSON.parse(rawdata);
+const database = require("./db.json");
 let users = database.users;
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -124,9 +123,12 @@ app.delete("/logout", verifyToken, (req, res) => {
 });
 
 //api
-app.use("/api", jsonServer.defaults(), jsonServer.router("db.json"));
+//app.use("/api", jsonServer.defaults(), jsonServer.router("db.json"));
 app.get("/api/campaigns", verifyToken, (req, res) => {
   res.json(database.campaigns);
+});
+app.get("/api/data", (req, res) => {
+  res.json(database);
 });
 
 app.listen(4001, () => console.log("Server started on port 4001"));
