@@ -3,7 +3,10 @@ const express = require("express");
 const fs = require("fs");
 const verifyToken = require("./src/middleware/auth");
 const jwt = require("jsonwebtoken");
-const database = require("./src/db.json");
+
+const raw = fs.readFileSync("./src/db.json");
+const database = JSON.parse(raw);
+
 let users = database.users;
 const cors = require("cors");
 const bcrypt = require("bcrypt");
