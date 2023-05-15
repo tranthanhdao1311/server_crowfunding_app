@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const fs = require("fs");
-const verifyToken = require("./middleware/auth");
+const verifyToken = require("./src/middleware/auth");
 const jwt = require("jsonwebtoken");
-const database = require("./db.json");
+const database = require("./src/db.json");
 let users = database.users;
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -12,9 +12,9 @@ const jsonServer = require("json-server");
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", (req, res) => {
-  res.send("oke server");
-});
+// app.use("/api", (req, res) => {
+//   res.send("oke server");
+// });
 //authen
 const generateTokens = (payload) => {
   const { id, name } = payload;
