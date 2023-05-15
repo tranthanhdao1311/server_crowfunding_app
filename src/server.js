@@ -12,6 +12,9 @@ const jsonServer = require("json-server");
 app.use(express.json());
 app.use(cors());
 
+app.use("/api", (req, res) => {
+  res.send("oke server");
+});
 //authen
 const generateTokens = (payload) => {
   const { id, name } = payload;
