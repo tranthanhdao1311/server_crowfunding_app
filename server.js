@@ -15,7 +15,7 @@ app.use(cors());
 // app.use("/api", (req, res) => {
 //   res.send("oke server");
 // });
-//authen
+//auth
 const generateTokens = (payload) => {
   const { id, name } = payload;
   const accessToken = jwt.sign({ id, name }, process.env.ACCESS_TOKEN_SECRET, {
